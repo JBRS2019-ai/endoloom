@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Endoloom — Found a SaaS challenger. From the inside.</title>
+<meta name="description" content="Endoloom is a small, serious cohort of AI-native founding pods replacing legacy SaaS. Deep domain insight meets agents that collapse the cost of building software. All seats open.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Spline+Sans+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap');
+
+:root{
+  --bg:#0b0d12;
+  --bg2:#0f1218;
+  --panel:#13171f;
+  --panel2:#171c25;
+  --line:#222a35;
+  --line2:#2c3744;
+  --ink:#ebeef3;
+  --ink2:#9aa6b4;
+  --ink3:#5e6b7a;
+  --acc:#ffb37a;
+  --acc-deep:#e0855a;
+  --weave:#c4f0d6;
+  --thread:#a78bff;
+  --red:#ff5e57;
+  --mono:'Spline Sans Mono',monospace;
+  --sans:'Archivo',sans-serif;
+  --serif:'Newsreader',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+::selection{background:var(--acc);color:#000}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono)}
+a{color:inherit;text-decoration:none}
+
+/* ============ TICKER ============ */
+.topstrip{
+  background:#000;border-bottom:1px solid var(--line);
+  font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+  color:var(--ink2);overflow:hidden;white-space:nowrap;position:relative;
+}
+.ticker{display:inline-block;padding:7px 0;animation:scroll 56s linear infinite}
+.ticker span{padding:0 26px;border-right:1px solid var(--line)}
+.ticker b{color:var(--acc);font-weight:600}
+.ticker .dn{color:var(--red)}
+.ticker .up{color:var(--weave)}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ============ NAV ============ */
+nav{position:sticky;top:0;z-index:1000;background:rgba(11,13,18,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.navin{display:flex;align-items:center;justify-content:space-between;height:62px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.025em;font-size:18px}
+.brand .mk{
+  width:30px;height:30px;border-radius:8px;display:grid;place-items:center;position:relative;
+  background:radial-gradient(circle at 30% 30%,var(--acc),var(--acc-deep) 70%);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.2);
+}
+.brand .mk svg{display:block}
+.navlinks{display:flex;gap:30px;font-size:13.5px;font-weight:500;color:var(--ink2)}
+.navlinks a{transition:color .15s}
+.navlinks a:hover{color:var(--ink)}
+.navcta{font-family:var(--mono);font-size:12.5px;font-weight:600;background:var(--acc);color:#000;padding:9px 16px;border-radius:24px;transition:transform .12s}
+.navcta:hover{transform:translateY(-1px)}
+@media(max-width:860px){.navlinks{display:none}}
+
+/* ============ HERO ============ */
+.hero{position:relative;padding:88px 0 70px;border-bottom:1px solid var(--line);overflow:hidden}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(900px 380px at 78% -10%, rgba(255,179,122,.10), transparent 60%),
+    radial-gradient(620px 320px at 8% 90%, rgba(196,240,214,.05), transparent 60%);
+}
+.weave-bg{position:absolute;inset:0;pointer-events:none;opacity:.4;mask-image:radial-gradient(900px 500px at 80% 0%, #000, transparent 75%)}
+.hero .wrap{position:relative;z-index:2}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:26px;
+  border:1px solid var(--line2);padding:7px 13px;border-radius:30px;background:var(--panel);
+}
+.eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--weave);box-shadow:0 0 0 0 rgba(196,240,214,.7);animation:pl 2s infinite}
+@keyframes pl{0%{box-shadow:0 0 0 0 rgba(196,240,214,.55)}70%{box-shadow:0 0 0 8px rgba(196,240,214,0)}100%{box-shadow:0 0 0 0 rgba(196,240,214,0)}}
+h1{font-size:clamp(40px,6.5vw,76px);line-height:1.01;letter-spacing:-.035em;font-weight:800;max-width:17ch;margin-bottom:24px}
+h1 em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--acc)}
+.lede{font-size:clamp(16px,2vw,19px);color:var(--ink2);max-width:62ch;margin-bottom:34px;line-height:1.65}
+.lede b{color:var(--ink);font-weight:600}
+.herobtns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.btn{font-family:var(--mono);font-size:13px;font-weight:600;padding:13px 22px;border-radius:30px;display:inline-flex;align-items:center;gap:9px;transition:all .15s;cursor:pointer;border:1px solid transparent}
+.btn-pri{background:var(--acc);color:#000}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,179,122,.22)}
+.btn-sec{background:transparent;border-color:var(--line2);color:var(--ink)}
+.btn-sec:hover{border-color:var(--ink3);background:var(--panel)}
+.btn .ar{transition:transform .15s}
+.btn:hover .ar{transform:translateX(3px)}
+
+.herostats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
+.hs{padding:20px 22px;border-right:1px solid var(--line)}
+.hs:last-child{border-right:none}
+.hs .n{font-family:var(--mono);font-size:27px;font-weight:700;letter-spacing:-.02em}
+.hs .n b{color:var(--acc);font-weight:700}
+.hs .l{font-size:11.5px;color:var(--ink3);margin-top:5px;letter-spacing:.02em;line-height:1.35}
+@media(max-width:760px){.herostats{grid-template-columns:repeat(2,1fr)}.hs:nth-child(2){border-right:none}.hs:nth-child(1),.hs:nth-child(2){border-bottom:1px solid var(--line)}}
+
+/* ============ MANIFESTO STRIP ============ */
+.manifesto{padding:54px 0;border-bottom:1px solid var(--line);background:var(--bg2);position:relative;overflow:hidden}
+.manifesto::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 280px at 50% 50%,rgba(167,139,255,.05),transparent 60%)}
+.manifesto .wrap{position:relative;z-index:2;text-align:center}
+.mf-line{font-family:var(--serif);font-style:italic;font-size:clamp(22px,3vw,30px);line-height:1.4;color:var(--ink);max-width:30ch;margin:0 auto 14px;font-weight:500}
+.mf-line em{color:var(--acc);font-style:italic}
+.mf-sub{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+
+/* ============ SECTION SCAFFOLD ============ */
+section{padding:78px 0;border-bottom:1px solid var(--line);position:relative}
+.sec-tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.sec-tag::before{content:"";width:26px;height:1px;background:var(--acc)}
+h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.03em;font-weight:800;line-height:1.06;max-width:18ch;margin-bottom:18px}
+h2 em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--acc)}
+.sec-lede{font-size:16.5px;color:var(--ink2);max-width:66ch;line-height:1.65}
+.sec-lede b{color:var(--ink);font-weight:600}
+
+/* ============ THESIS ============ */
+.thesis-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:46px;margin-top:48px;align-items:start}
+@media(max-width:880px){.thesis-grid{grid-template-columns:1fr;gap:34px}}
+.bigquote{font-family:var(--serif);font-size:23px;line-height:1.45;color:var(--ink);border-left:2px solid var(--acc);padding:4px 0 4px 24px;margin-bottom:26px;font-style:italic}
+.bigquote .src{display:block;font-family:var(--mono);font-size:12px;color:var(--ink3);margin-top:14px;font-style:normal;letter-spacing:.02em}
+.thesis-grid p{color:var(--ink2);font-size:15.5px;margin-bottom:16px;line-height:1.7}
+.thesis-grid p b{color:var(--ink);font-weight:600}
+
+.marketcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.mc-h{padding:16px 20px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);display:flex;justify-content:space-between;align-items:center}
+.mc-h .live{display:flex;align-items:center;gap:7px;color:var(--weave)}
+.mc-h .live i{width:6px;height:6px;border-radius:50%;background:var(--weave);display:inline-block;animation:pl 2s infinite}
+.mrow{padding:15px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.mrow:last-child{border-bottom:none}
+.mrow .lab{font-size:13.5px;color:var(--ink2)}
+.mrow .val{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--ink);white-space:nowrap}
+.mrow .val.up{color:var(--acc)}
+.mrow .val.dn{color:var(--red)}
+
+/* ============ THE MOMENT (one-person unicorn data) ============ */
+.moment{margin-top:50px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:880px){.moment{grid-template-columns:1fr}}
+.momcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden}
+.momcard::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--acc)}
+.momcard .mh{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px}
+.momcard .mn{font-family:var(--mono);font-size:34px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:6px;line-height:1}
+.momcard .mn b{color:var(--acc)}
+.momcard .ml{font-size:14px;color:var(--ink2);line-height:1.55}
+.momcard .mq{font-size:12px;color:var(--ink3);margin-top:12px;font-style:italic}
+
+/* ============ THE WEAVE ============ */
+.loom{margin-top:50px;position:relative}
+.loom-rail{position:absolute;left:31px;top:30px;bottom:30px;width:2px;background:linear-gradient(180deg,var(--acc) 0%,var(--thread) 50%,var(--weave) 100%);opacity:.35;border-radius:2px}
+@media(max-width:680px){.loom-rail{display:none}}
+.thread{display:grid;grid-template-columns:62px 1fr 280px;gap:26px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-bottom:14px;transition:border-color .2s,transform .2s;position:relative}
+.thread:hover{border-color:var(--line2);transform:translateY(-2px)}
+.thread .knot{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--acc);width:60px;height:60px;border-radius:50%;background:var(--bg);border:1px solid var(--line2);display:grid;place-items:center;position:relative;z-index:2}
+.thread .knot::after{content:"";position:absolute;inset:6px;border-radius:50%;border:1px dashed var(--line2)}
+.thread h3{font-size:19px;font-weight:700;letter-spacing:-.01em;margin-bottom:7px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.thread h3 .agentpill,.thread h3 .humanpill{font-family:var(--mono);font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:20px;letter-spacing:.04em;border:1px solid}
+.thread h3 .agentpill{color:var(--thread);background:rgba(167,139,255,.08);border-color:rgba(167,139,255,.25)}
+.thread h3 .humanpill{color:var(--weave);background:rgba(196,240,214,.08);border-color:rgba(196,240,214,.25)}
+.thread p{font-size:14px;color:var(--ink2);line-height:1.6;max-width:62ch}
+.thread .seatref{background:var(--bg);border:1px solid var(--line2);border-radius:10px;padding:15px 16px}
+.thread .seatref .st{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.thread .seatref .sn{font-size:14.5px;font-weight:700;margin-bottom:5px}
+.thread .seatref .sd{font-size:12.5px;color:var(--ink2);line-height:1.5}
+@media(max-width:880px){.thread{grid-template-columns:1fr;gap:16px}}
+
+/* ============ POD BOARD ============ */
+.boardstats{margin-top:8px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:760px){.boardstats{grid-template-columns:repeat(2,1fr)}}
+.bstat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.bstat .bn{font-family:var(--mono);font-size:26px;font-weight:700;letter-spacing:-.02em}
+.bstat .bn.open{color:var(--weave)}
+.bstat .bn.acc{color:var(--acc)}
+.bstat .bn.agent{color:var(--thread)}
+.bstat .bn.ink{color:var(--ink)}
+.bstat .bl{font-size:11.5px;color:var(--ink3);margin-top:5px;letter-spacing:.02em}
+
+.podboard{margin-top:28px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel)}
+.pb-head{padding:18px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.pb-head .t{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--ink);display:flex;align-items:center;gap:11px}
+.pb-head .t .pulse{width:8px;height:8px;border-radius:50%;background:var(--weave);animation:pl 2s infinite}
+.pb-head .legend{display:flex;gap:18px;font-family:var(--mono);font-size:10.5px;color:var(--ink3);align-items:center;flex-wrap:wrap}
+.pb-head .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.pb-head .legend .open{background:var(--weave)}
+.pb-head .legend .lead{background:transparent;border:1.5px solid var(--weave);box-shadow:inset 0 0 0 2px var(--bg)}
+.pb-head .legend .agent{background:var(--thread)}
+
+.pb-filter{padding:14px 24px;border-bottom:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap;background:var(--bg2)}
+.pb-filter button{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.04em;color:var(--ink2);background:transparent;border:1px solid var(--line2);padding:7px 13px;border-radius:20px;cursor:pointer;transition:all .15s}
+.pb-filter button:hover{color:var(--ink);border-color:var(--ink3)}
+.pb-filter button.active{background:var(--acc);color:#000;border-color:var(--acc)}
+
+.pb-body{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
+@media(max-width:980px){.pb-body{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.pb-body{grid-template-columns:1fr}}
+
+.pod{background:var(--panel);padding:0;display:flex;flex-direction:column}
+.pod-head{padding:18px 20px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.pod-code{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--acc);margin-bottom:5px}
+.pod-name{font-size:15.5px;font-weight:700;letter-spacing:-.01em;margin-bottom:3px;line-height:1.25}
+.pod-vs{font-size:11.5px;color:var(--ink3);margin-bottom:8px}
+.pod-vs b{color:var(--ink2);font-weight:600}
+.pod-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pod-stage{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:2px 8px;border-radius:12px;border:1px solid var(--line2);color:var(--ink2)}
+.pod-stage.build{color:var(--acc);border-color:rgba(255,179,122,.3);background:rgba(255,179,122,.06)}
+.pod-stage.val{color:var(--thread);border-color:rgba(167,139,255,.3);background:rgba(167,139,255,.06)}
+.pod-stage.scout{color:var(--weave);border-color:rgba(196,240,214,.3);background:rgba(196,240,214,.06)}
+.pod-score{font-family:var(--mono);font-size:10px;color:var(--ink3);letter-spacing:.04em}
+.pod-score b{color:var(--ink2);font-weight:600}
+
+.seats{padding:8px 0;flex:1}
+.seat{display:flex;align-items:flex-start;gap:12px;padding:13px 20px;border-bottom:1px dashed var(--line);transition:background .12s;position:relative}
+.seat:last-child{border-bottom:none}
+.seat:hover{background:var(--panel2)}
+.seat .dot{width:11px;height:11px;border-radius:3px;flex-shrink:0;margin-top:4px;position:relative}
+.seat.open .dot{background:var(--weave);box-shadow:0 0 0 0 rgba(196,240,214,.6);animation:pl 2.4s infinite}
+.seat.lead .dot{background:transparent;border:1.5px solid var(--weave);box-shadow:inset 0 0 0 2px var(--bg),0 0 0 0 rgba(196,240,214,.6);animation:pl 2s infinite;width:13px;height:13px;margin-top:3px}
+.seat.agent .dot{background:var(--thread);border-radius:50%}
+.seat .role{flex:1;min-width:0}
+.seat .rname{font-size:13px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.seat .rname .leadtag{font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--weave);background:rgba(196,240,214,.1);border:1px solid rgba(196,240,214,.25);padding:1px 6px;border-radius:8px;letter-spacing:.04em}
+.seat .rprof{font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin-top:3px;line-height:1.45;letter-spacing:.01em}
+.seat .rprof.live{color:var(--ink2)}
+.seat .actbtn{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.04em;color:#000;background:var(--weave);padding:5px 11px;border-radius:16px;transition:transform .12s;white-space:nowrap;flex-shrink:0}
+.seat .actbtn:hover{transform:translateY(-1px)}
+.seat .agtag{font-family:var(--mono);font-size:10px;color:var(--thread);letter-spacing:.04em;white-space:nowrap;flex-shrink:0}
+
+.pb-foot{padding:14px 24px;font-family:var(--mono);font-size:11px;color:var(--ink3);border-top:1px solid var(--line);background:var(--bg2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.pb-foot a{color:var(--acc)}
+
+/* ============ TARGETS TABLE ============ */
+.tablewrap{margin-top:46px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
+.tw-head{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.tw-head .t{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--ink)}
+.scrollx{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:880px}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);text-align:left;padding:13px 18px;border-bottom:1px solid var(--line);font-weight:500;background:var(--bg2);white-space:nowrap}
+td{padding:15px 18px;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--ink2);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tbody tr{transition:background .12s}
+tbody tr:hover{background:var(--panel2)}
+td .tgt{font-weight:700;color:var(--ink);font-size:14px}
+td .sub{font-size:11.5px;color:var(--ink3);margin-top:2px}
+td.mono{font-family:var(--mono)}
+.vscore{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-weight:600;font-size:13px}
+.vbar{width:46px;height:6px;border-radius:3px;background:var(--line2);overflow:hidden;display:inline-block}
+.vbar i{display:block;height:100%;border-radius:3px}
+.tw-foot{padding:13px 22px;font-family:var(--mono);font-size:11px;color:var(--ink3);border-top:1px solid var(--line);background:var(--bg2)}
+
+/* ============ ROLES (lanes) ============ */
+.lanes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:46px}
+@media(max-width:920px){.lanes{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.lanes{grid-template-columns:1fr}}
+.lane{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;transition:border-color .2s,transform .2s;position:relative;overflow:hidden}
+.lane::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.lane:hover{transform:translateY(-3px);border-color:var(--line2)}
+.lane:hover::before{transform:scaleX(1)}
+.lane.featured{border-color:rgba(255,179,122,.3);background:linear-gradient(180deg,rgba(255,179,122,.04),var(--panel) 80%)}
+.lane.featured::before{transform:scaleX(1)}
+.lane .featuredtag{font-family:var(--mono);font-size:9.5px;font-weight:700;color:#000;background:var(--acc);padding:2px 8px;border-radius:10px;letter-spacing:.06em;display:inline-block;margin-bottom:12px;align-self:flex-start}
+.lane .ic{font-family:var(--mono);font-size:11px;color:var(--acc);border:1px solid var(--line2);border-radius:50%;width:40px;height:40px;display:grid;place-items:center;margin-bottom:16px;font-weight:600}
+.lane h4{font-size:17px;font-weight:700;margin-bottom:4px;letter-spacing:-.01em}
+.lane .roleline{font-family:var(--mono);font-size:10.5px;color:var(--ink3);letter-spacing:.04em;margin-bottom:14px;text-transform:uppercase}
+.lane .pitch{font-size:13.5px;color:var(--ink2);line-height:1.6;margin-bottom:14px;flex:1}
+.lane .pitch b{color:var(--ink);font-weight:600}
+.lane .openct{font-family:var(--mono);font-size:11px;color:var(--weave);border-top:1px solid var(--line);padding-top:12px;margin-bottom:13px;display:flex;align-items:center;gap:8px}
+.lane .openct i{width:6px;height:6px;border-radius:50%;background:var(--weave);animation:pl 2s infinite}
+.lane .lcta{font-family:var(--mono);font-size:11.5px;font-weight:600;color:#000;background:var(--acc);text-align:center;padding:10px;border-radius:20px;transition:transform .12s}
+.lane .lcta:hover{transform:translateY(-1px)}
+
+/* ============ ETHICS BAND ============ */
+.ethics{background:var(--bg2);border-bottom:1px solid var(--line)}
+.ethics-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;margin-top:36px;align-items:start}
+@media(max-width:880px){.ethics-grid{grid-template-columns:1fr;gap:32px}}
+.ethics-block{display:flex;flex-direction:column;gap:18px}
+.ethbox{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--weave);border-radius:10px;padding:20px 22px}
+.ethbox.warn{border-left-color:var(--red)}
+.ethbox .et{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--weave);margin-bottom:9px;display:flex;align-items:center;gap:8px}
+.ethbox.warn .et{color:var(--red)}
+.ethbox p{font-size:13.5px;color:var(--ink2);line-height:1.65}
+.ethbox p b{color:var(--ink);font-weight:600}
+
+/* ============ FAQ ============ */
+.faq{margin-top:40px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
+details{border-bottom:1px solid var(--line)}
+details:last-child{border-bottom:none}
+summary{padding:20px 24px;font-size:15.5px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .15s}
+summary:hover{color:var(--acc)}
+summary::-webkit-details-marker{display:none}
+summary .pm{font-family:var(--mono);font-size:18px;color:var(--acc);transition:transform .2s}
+details[open] summary .pm{transform:rotate(45deg)}
+.faq .ans{padding:0 24px 22px;font-size:14px;color:var(--ink2);line-height:1.7;max-width:76ch}
+.faq .ans b{color:var(--ink);font-weight:600}
+
+/* ============ APPLY FORM ============ */
+.apply{padding:84px 0;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.apply::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 320px at 50% 0%,rgba(255,179,122,.08),transparent 65%)}
+.apply .wrap{position:relative;z-index:2}
+.apply h2{margin:0 auto 16px;max-width:24ch}
+.apply > .wrap > p.sub{color:var(--ink2);max-width:56ch;margin:0 auto 36px;font-size:16px;line-height:1.65}
+.applycard{max-width:640px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:32px;text-align:left}
+.formrow{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.formrow label{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.formrow input,.formrow select,.formrow textarea{
+  background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:11px 14px;
+  font-family:var(--sans);font-size:14px;color:var(--ink);transition:border-color .15s;
+  width:100%;
+}
+.formrow textarea{resize:vertical;min-height:90px;font-family:var(--sans)}
+.formrow input:focus,.formrow select:focus,.formrow textarea:focus{outline:none;border-color:var(--acc)}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.formgrid{grid-template-columns:1fr}}
+.submitbtn{width:100%;font-family:var(--mono);font-size:13px;font-weight:600;background:var(--acc);color:#000;border:none;padding:14px;border-radius:24px;cursor:pointer;letter-spacing:.02em;transition:transform .12s,box-shadow .15s;margin-top:6px}
+.submitbtn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,179,122,.22)}
+.formnote{font-family:var(--mono);font-size:10.5px;color:var(--ink3);text-align:center;margin-top:14px;letter-spacing:.02em}
+.formnote a{color:var(--acc)}
+.ok{display:none;background:rgba(196,240,214,.06);border:1px solid rgba(196,240,214,.25);padding:18px;border-radius:10px;margin-top:14px;color:var(--weave);font-size:13.5px;font-family:var(--mono);text-align:center}
+.ok.show{display:block}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--line);padding:50px 0 38px;background:var(--bg2)}
+.foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px}
+.foot-brand{max-width:320px}
+.foot-brand .bx{display:flex;align-items:center;gap:11px;font-weight:800;font-size:18px;margin-bottom:14px}
+.foot-brand p{font-size:13px;color:var(--ink3);line-height:1.6}
+.foot-cols{display:flex;gap:54px;flex-wrap:wrap}
+.fcol h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px}
+.fcol a{display:block;font-size:13px;color:var(--ink2);margin-bottom:9px;transition:color .15s;cursor:pointer}
+.fcol a:hover{color:var(--acc)}
+.foot-bot{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:11px;color:var(--ink3)}
+.disclaimer{margin-top:18px;font-size:11px;color:var(--ink3);line-height:1.65;max-width:90ch}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ===== TICKER ===== -->
+<div class="topstrip">
+  <div class="ticker">
+    <span><b>COHORT 01 OPEN</b> · founding pods now forming</span>
+    <span>WORLDWIDE SOFTWARE SPEND <b>$1.4T</b> 2026E · Gartner</span>
+    <span>MEDIAN PUBLIC SaaS GROWTH <b>14.6%</b> YoY</span>
+    <span>SaaS INDEX <span class="dn">−6.5%</span> 2025 vs S&P <span class="up">+17.6%</span></span>
+    <span>SALESFORCE ENT. SEAT <b>$175</b>/user/mo</span>
+    <span>ZENDESK AI <b>$50</b>/agent + <b>$1.50–2.00</b>/resolution</span>
+    <span>LIDL SAP WRITE-OFF <span class="dn">€500M</span></span>
+    <span>AI CODING SPEEDUP <b>55.8%</b> · GitHub RCT</span>
+    <span>SIERRA <b>$150M ARR</b> in under 2 yrs · Feb 2026</span>
+    <span><b>COHORT 01 OPEN</b> · founding pods now forming</span>
+    <span>WORLDWIDE SOFTWARE SPEND <b>$1.4T</b> 2026E · Gartner</span>
+    <span>MEDIAN PUBLIC SaaS GROWTH <b>14.6%</b> YoY</span>
+    <span>SaaS INDEX <span class="dn">−6.5%</span> 2025 vs S&P <span class="up">+17.6%</span></span>
+    <span>SALESFORCE ENT. SEAT <b>$175</b>/user/mo</span>
+    <span>ZENDESK AI <b>$50</b>/agent + <b>$1.50–2.00</b>/resolution</span>
+    <span>LIDL SAP WRITE-OFF <span class="dn">€500M</span></span>
+    <span>AI CODING SPEEDUP <b>55.8%</b> · GitHub RCT</span>
+    <span>SIERRA <b>$150M ARR</b> in under 2 yrs · Feb 2026</span>
+  </div>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="wrap navin">
+    <a href="#" class="brand">
+      <span class="mk">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0b0d12" stroke-width="2.2" stroke-linecap="round">
+          <path d="M3 6 L21 6 M3 12 L21 12 M3 18 L21 18"/>
+          <path d="M7 3 L7 21 M12 3 L12 21 M17 3 L17 21" opacity=".55"/>
+        </svg>
+      </span>
+      endoloom
+    </a>
+    <div class="navlinks">
+      <a href="#thesis">Moment</a>
+      <a href="#weave">The Weave</a>
+      <a href="#pods">Pods</a>
+      <a href="#targets">Targets</a>
+      <a href="#roles">Roles</a>
+      <a href="#apply">Apply</a>
+    </div>
+    <a href="#apply" class="navcta">APPLY TO COHORT 01 →</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <svg class="weave-bg" viewBox="0 0 1200 600" preserveAspectRatio="none">
+    <g stroke="#ffb37a" stroke-width="1" fill="none" opacity=".18">
+      <path d="M0,80 Q300,140 600,80 T1200,80"/>
+      <path d="M0,160 Q300,220 600,160 T1200,160"/>
+      <path d="M0,240 Q300,300 600,240 T1200,240"/>
+      <path d="M0,320 Q300,380 600,320 T1200,320"/>
+      <path d="M0,400 Q300,460 600,400 T1200,400"/>
+      <path d="M0,480 Q300,540 600,480 T1200,480"/>
+    </g>
+    <g stroke="#a78bff" stroke-width="1" fill="none" opacity=".15">
+      <path d="M80,0 Q140,300 80,600"/>
+      <path d="M240,0 Q300,300 240,600"/>
+      <path d="M400,0 Q460,300 400,600"/>
+      <path d="M560,0 Q620,300 560,600"/>
+      <path d="M720,0 Q780,300 720,600"/>
+      <path d="M880,0 Q940,300 880,600"/>
+      <path d="M1040,0 Q1100,300 1040,600"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow"><span class="pulse"></span> COHORT 01 OPEN · FOUNDING PODS FORMING NOW</div>
+    <h1>Found a SaaS challenger. <em>From the inside.</em></h1>
+    <p class="lede">The cost of building software just collapsed by <b>10–100×</b>. The next great software companies will be built by tiny AI-native teams who know exactly where the incumbents are weak. Endoloom assembles those teams. <b>Three or four people, agents that do the volume, one beatable target each. The codebase moat is gone. This is the window.</b></p>
+    <div class="herobtns">
+      <a href="#pods" class="btn btn-pri">SEE THE PODS <span class="ar">→</span></a>
+      <a href="#thesis" class="btn btn-sec">WHY NOW</a>
+    </div>
+    <div class="herostats">
+      <div class="hs"><div class="n"><b>6</b></div><div class="l">Founding pods in cohort 01</div></div>
+      <div class="hs"><div class="n"><b>18</b></div><div class="l">Founding seats open across all pods</div></div>
+      <div class="hs"><div class="n"><b>$1.4T</b></div><div class="l">Software market under attack</div></div>
+      <div class="hs"><div class="n"><b>10×</b></div><div class="l">Target price advantage per seat</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MANIFESTO STRIP ===== -->
+<div class="manifesto">
+  <div class="wrap">
+    <div class="mf-line">The moat was the codebase. <em>The codebase just got cheap.</em></div>
+    <div class="mf-sub">— ENDOLOOM, COHORT 01</div>
+  </div>
+</div>
+
+<!-- ===== THESIS / MOMENT ===== -->
+<section id="thesis">
+  <div class="wrap">
+    <div class="sec-tag">01 — The moment</div>
+    <h2>The smallest team in software history <em>is now the right team.</em></h2>
+    <p class="sec-lede">For twenty years, five people couldn't outbuild Salesforce. Three of you couldn't outbuild SAP. The defense was millions of lines of code accumulated over decades. <b>That defense is gone.</b> AI-native challengers founded in 2023–2024 are already at $100–150M ARR with headcounts in the dozens, attacking categories everyone thought were locked.</p>
+
+    <div class="moment">
+      <div class="momcard">
+        <div class="mh">REFERENCE · SUPPORT</div>
+        <div class="mn"><b>$150M</b> ARR</div>
+        <div class="ml">Sierra, founded by Bret Taylor in 2023, attacking Zendesk and incumbent CX vendors.</div>
+        <div class="mq">"In under 2 years" — Feb 2026</div>
+      </div>
+      <div class="momcard">
+        <div class="mh">REFERENCE · FINANCE / ERP</div>
+        <div class="mn"><b>$108M</b> raised</div>
+        <div class="ml">Rillet, AI-native ledger, from Sequoia, a16z, ICONIQ. Replacing NetSuite for OpenAI, Brex, Plaid-class buyers.</div>
+        <div class="mq">200+ customers, 5× YoY growth</div>
+      </div>
+      <div class="momcard">
+        <div class="mh">REFERENCE · CHIP DESIGN</div>
+        <div class="mn"><b>$74M</b> raised</div>
+        <div class="ml">ChipAgents, attacking the Synopsys / Cadence / Siemens oligopoly. Advisors include ex-CEOs of those exact incumbents.</div>
+        <div class="mq">Deployed at 50–80 semi companies</div>
+      </div>
+    </div>
+
+    <div class="thesis-grid" style="margin-top:50px">
+      <div>
+        <div class="bigquote">
+          "If you do price-to-sales, software has been trading at 20, 30 — and now they're down at five, ten. But utilities trade at one to two."
+          <span class="src">— SEBASTIAN SIEMIATKOWSKI, CEO KLARNA · ON SaaS MULTIPLE COMPRESSION</span>
+        </div>
+        <p>The signal is everywhere at once. Klarna cut roughly <b>40% of headcount</b> with AI and publicly dropped Salesforce and Workday. Marc Benioff took Salesforce support <b>from 9,000 heads to about 5,000</b> — the incumbent confirming that AI structurally shrinks the seats it can bill for. Software had its worst month since 2008 in early 2026.</p>
+        <p>The qualification to lead one of these companies is not where you've worked. It is <b>knowing exactly where the incumbent is weak</b> — the failed implementations, the per-seat prices that don't survive AI, the workflows the 2010 UI can't fix. If that's you, this is your moment, not your employer's.</p>
+      </div>
+
+      <div class="marketcard">
+        <div class="mc-h"><span>MARKET CONDITIONS</span><span class="live"><i></i>TRACKED</span></div>
+        <div class="mrow"><span class="lab">Global SaaS end-user spend (2025)</span><span class="val">~$300B</span></div>
+        <div class="mrow"><span class="lab">Worldwide software spend (2026E)</span><span class="val up">$1.4T</span></div>
+        <div class="mrow"><span class="lab">Median public-SaaS YoY growth</span><span class="val">14.6%</span></div>
+        <div class="mrow"><span class="lab">SaaS index, 2025 total return</span><span class="val dn">−6.5%</span></div>
+        <div class="mrow"><span class="lab">GitHub Copilot task speedup (RCT)</span><span class="val up">+55.8%</span></div>
+        <div class="mrow"><span class="lab">Field-study coding time saved</span><span class="val up">30–50%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE WEAVE ===== -->
+<section id="weave">
+  <div class="wrap">
+    <div class="sec-tag">02 — The weave</div>
+    <h2>Three or four humans. <em>A weave of agents around them.</em></h2>
+    <p class="sec-lede">Every Endoloom pod is small by design. A founding team of three to four people holds the seats where judgment, taste, and trust live. <b>Agents run continuously around them</b>, scanning categories, drafting specs, writing code, running outbound. The result is the leverage of a fifty-person company at the size of a band.</p>
+
+    <div class="loom">
+      <div class="loom-rail"></div>
+
+      <div class="thread">
+        <div class="knot">01</div>
+        <div>
+          <h3>Sense <span class="agentpill">SCANNER AGENTS</span></h3>
+          <p>Agents continuously score software categories on a <b>Vulnerability Index</b>: incumbent price-per-seat, contract lock-in, codebase age, customer-satisfaction gaps mined from G2 and Gartner Peer Insights, implementation-cost multiples, switching costs. The output is evidence-backed target selection, not a hunch.</p>
+        </div>
+        <div class="seatref">
+          <div class="st">SHARED · COHORT-LEVEL</div>
+          <div class="sn">Runs across all pods</div>
+          <div class="sd">Each pod inherits a live, ranked target dossier so the conversation starts at "which incumbent and which wedge," not "what should we build."</div>
+        </div>
+      </div>
+
+      <div class="thread">
+        <div class="knot">02</div>
+        <div>
+          <h3>Shape <span class="agentpill">STRATEGY AGENTS</span> <span class="humanpill">FOUNDING LEAD</span></h3>
+          <p>Agents convert a validated target into an attack vector — one-tenth-price clone, AI-native workflow rebuild, point-solution bundle, or open-source-plus-hosting — and produce the spec, pricing model, and go-to-market hypothesis. <b>The Founding Lead chooses.</b></p>
+        </div>
+        <div class="seatref">
+          <div class="st">SEAT · FOUNDING LEAD</div>
+          <div class="sn">Owns the company</div>
+          <div class="sd">CEO of the pod. Lives the domain. The judgment seat — what the agents draft, the Founding Lead decides.</div>
+        </div>
+      </div>
+
+      <div class="thread">
+        <div class="knot">03</div>
+        <div>
+          <h3>Weave <span class="agentpill">BUILD AGENTS</span> <span class="humanpill">FOUNDING ENGINEER</span></h3>
+          <p>Coding agents produce the product against the spec. The Founding Engineer holds the production-grade bar — architecture, security, the parts that need taste. <b>One Founding Engineer plus the weave does what used to take a twenty-person eng team.</b></p>
+        </div>
+        <div class="seatref">
+          <div class="st">SEAT · FOUNDING ENGINEER</div>
+          <div class="sn">CTO of the pod</div>
+          <div class="sd">Reviews agent-built code, owns the system end to end, catches what agents miss.</div>
+        </div>
+      </div>
+
+      <div class="thread">
+        <div class="knot">04</div>
+        <div>
+          <h3>Reach <span class="agentpill">OUTBOUND AGENTS</span> <span class="humanpill">FOUNDING GTM</span></h3>
+          <p>Agents run prospecting, sequencing, and meeting-booking at volume. But ripping out an entrenched incumbent is a trust transaction. <b>The Founding GTM lead handles the human side</b> — live conversations, negotiation, procurement choreography — that turns booked meetings into displaced incumbents.</p>
+        </div>
+        <div class="seatref">
+          <div class="st">SEAT · FOUNDING GTM</div>
+          <div class="sn">First revenue, first reference customers</div>
+          <div class="sd">Optional in earliest pods, essential by the time the wedge product lands. Some pods start with 3 founders and add this seat post-seed.</div>
+        </div>
+      </div>
+
+      <div class="thread">
+        <div class="knot">05</div>
+        <div>
+          <h3>Tend <span class="agentpill">SHARED INFRA</span></h3>
+          <p>Endoloom provides the loom underneath every pod: the agent stack, legal entity setup, finance ops, cloud and tooling credits, recruiting, and access to a senior advisor bench. <b>The marginal cost of starting pod #50 is a fraction of pod #1.</b> Pods focus on building and selling. The weave handles the rest.</p>
+        </div>
+        <div class="seatref">
+          <div class="st">SHARED · COHORT-WIDE</div>
+          <div class="sn">Not a seat — a backbone</div>
+          <div class="sd">Every pod draws on the same infrastructure. Wins compound into reference logos and playbooks the next pod inherits.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== POD BOARD ===== -->
+<section id="pods">
+  <div class="wrap">
+    <div class="sec-tag">03 — Pod board · all seats open</div>
+    <h2>Six pods. Eighteen founding seats. <em>All open today.</em></h2>
+    <p class="sec-lede">This is the live state of cohort 01. Every pod is small by design — a Founding Lead, a Founding Engineer, and either one or two more seats (a domain-specific Founding Lead 02, or a Founding GTM). <b>The agents are already running. The humans are who we're assembling now.</b></p>
+
+    <div class="boardstats">
+      <div class="bstat"><div class="bn open">18</div><div class="bl">Founding seats open</div></div>
+      <div class="bstat"><div class="bn acc">7</div><div class="bl">Founding Lead seats (CEO)</div></div>
+      <div class="bstat"><div class="bn ink">6</div><div class="bl">Founding pods · cohort 01</div></div>
+      <div class="bstat"><div class="bn agent">11</div><div class="bl">Agents running across the weave</div></div>
+    </div>
+
+    <div class="podboard" style="margin-top:28px">
+      <div class="pb-head">
+        <span class="t"><span class="pulse"></span> POD_BOARD // COHORT_01 // LIVE</span>
+        <span class="legend">
+          <span><i class="lead"></i>Founding Lead (priority)</span>
+          <span><i class="open"></i>Open</span>
+          <span><i class="agent"></i>Agent-held</span>
+        </span>
+      </div>
+
+      <div class="pb-filter">
+        <button class="active" data-f="all">All pods</button>
+        <button data-f="lead">Founding Lead seats</button>
+        <button data-f="eng">Founding Engineer</button>
+        <button data-f="gtm">Founding GTM</button>
+        <button data-f="build">Pods in build</button>
+        <button data-f="val">Pods validating</button>
+        <button data-f="scout">Pods scouting</button>
+      </div>
+
+      <div class="pb-body" id="pbBody">
+
+        <!-- POD 01 -->
+        <div class="pod" data-vent="V01" data-stage="build">
+          <div class="pod-head">
+            <div class="pod-code">EL-V01 · CONCIERGE</div>
+            <div class="pod-name">Per-resolution AI support</div>
+            <div class="pod-vs">vs. <b>Zendesk</b> · SMB &amp; mid-market</div>
+            <div class="pod-meta">
+              <span class="pod-stage build">IN BUILD</span>
+              <span class="pod-score">VULN <b>94</b></span>
+            </div>
+          </div>
+          <div class="seats">
+            <div class="seat lead" data-roles="lead">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding Lead <span class="leadtag">CEO</span></span>
+                <span class="rprof live">CX or support-ops leader · seen Zendesk pricing from the buyer side</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat open" data-roles="eng">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding Engineer</span>
+                <span class="rprof live">Strong with LLM tool-use, eval pipelines, latency-sensitive systems</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat open" data-roles="gtm">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding GTM</span>
+                <span class="rprof live">Seed-stage SaaS closer with SMB / mid-market trust</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat agent">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Scanner &amp; outbound</span>
+                <span class="rprof">2 agents · 24/7</span>
+              </span>
+              <span class="agtag">AGENT</span>
+            </div>
+            <div class="seat agent">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Build agents</span>
+                <span class="rprof">3 agents · human-reviewed</span>
+              </span>
+              <span class="agtag">AGENT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- POD 02 -->
+        <div class="pod" data-vent="V02" data-stage="build">
+          <div class="pod-head">
+            <div class="pod-code">EL-V02 · LEDGER</div>
+            <div class="pod-name">AI-native CRM for ops teams</div>
+            <div class="pod-vs">vs. <b>Salesforce</b> · ≤50-seat revenue teams</div>
+            <div class="pod-meta">
+              <span class="pod-stage build">IN BUILD</span>
+              <span class="pod-score">VULN <b>91</b></span>
+            </div>
+          </div>
+          <div class="seats">
+            <div class="seat lead" data-roles="lead">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding Lead <span class="leadtag">CEO</span></span>
+                <span class="rprof live">Revops leader · open-source instinct · knows Salesforce pricing cliffs</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat open" data-roles="eng">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding Engineer</span>
+                <span class="rprof live">CRUD-at-scale, data modeling, multi-tenant systems experience</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat open" data-roles="gtm">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding GTM</span>
+                <span class="rprof live">Mid-market sales · has displaced Salesforce in a prior role</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat agent">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Scanner &amp; outbound</span>
+                <span class="rprof">3 agents · 24/7</span>
+              </span>
+              <span class="agtag">AGENT</span>
+            </div>
+            <div class="seat agent">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Build agents</span>
+                <span class="rprof">4 agents · human-reviewed</span>
+              </span>
+              <span class="agtag">AGENT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- POD 03 -->
+        <div class="pod" data-vent="V03" data-stage="build">
+          <div class="pod-head">
+            <div class="pod-code">EL-V03 · DESK</div>
+            <div class="pod-name">Chat-first AI service desk</div>
+            <div class="pod-vs">vs. <b>Jira SM / ServiceNow</b> · internal IT</div>
+            <div class="pod-meta">
+              <span class="pod-stage build">IN BUILD</span>
+              <span class="pod-score">VULN <b>88</b></span>
+            </div>
+          </div>
+          <div class="seats">
+            <div class="seat lead" data-roles="lead">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding Lead <span class="leadtag">CEO</span></span>
+                <span class="rprof live">ITSM PM or operator · has felt ServiceNow's three-axis license maze</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat open" data-roles="eng">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding Engineer</span>
+                <span class="rprof live">Workflow / state-machine engines, integrations breadth</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat open" data-roles="gtm">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding GTM</span>
+                <span class="rprof live">IT-buyer relationships at $50M–$5B-rev orgs</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat agent">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Scanner &amp; outbound</span>
+                <span class="rprof">2 agents · 24/7</span>
+              </span>
+              <span class="agtag">AGENT</span>
+            </div>
+            <div class="seat agent">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Build agents</span>
+                <span class="rprof">3 agents · human-reviewed</span>
+              </span>
+              <span class="agtag">AGENT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- POD 04 -->
+        <div class="pod" data-vent="V04" data-stage="val">
+          <div class="pod-head">
+            <div class="pod-code">EL-V04 · BOOKS</div>
+            <div class="pod-name">Vertical AI-native ERP</div>
+            <div class="pod-vs">vs. <b>NetSuite / SAP</b> · one underserved vertical</div>
+            <div class="pod-meta">
+              <span class="pod-stage val">VALIDATING</span>
+              <span class="pod-score">VULN <b>80</b></span>
+            </div>
+          </div>
+          <div class="seats">
+            <div class="seat lead" data-roles="lead">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding Lead <span class="leadtag">CEO</span></span>
+                <span class="rprof live">Implementer or finance-ops leader with deep ERP scar tissue</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat lead" data-roles="lead">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding Lead · vertical <span class="leadtag">CO-CEO</span></span>
+                <span class="rprof live">Operator inside the chosen vertical (agencies, practices, mfg.)</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat open" data-roles="eng">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding Engineer</span>
+                <span class="rprof live">Accounting / ledger engines, transactional consistency, audit trails</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat agent">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Sector scoring agents</span>
+                <span class="rprof">2 agents · target vertical sweep</span>
+              </span>
+              <span class="agtag">AGENT</span>
+            </div>
+            <div class="seat agent">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Spec &amp; wedge agents</span>
+                <span class="rprof">2 agents · drafting</span>
+              </span>
+              <span class="agtag">AGENT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- POD 05 -->
+        <div class="pod" data-vent="V05" data-stage="scout">
+          <div class="pod-head">
+            <div class="pod-code">EL-V05 · FLOW</div>
+            <div class="pod-name">Probabilistic demand planning</div>
+            <div class="pod-vs">vs. <b>Blue Yonder / Kinaxis</b> · CPG, F&amp;B, electronics</div>
+            <div class="pod-meta">
+              <span class="pod-stage scout">SCOUTING</span>
+              <span class="pod-score">VULN <b>74</b></span>
+            </div>
+          </div>
+          <div class="seats">
+            <div class="seat lead" data-roles="lead">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding Lead <span class="leadtag">CEO</span></span>
+                <span class="rprof live">Supply-chain planner or ex-SCM software operator</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat open" data-roles="eng">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding Engineer</span>
+                <span class="rprof live">Forecasting, optimization, probabilistic ML background</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat open" data-roles="gtm">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding GTM</span>
+                <span class="rprof live">Enterprise supply-chain seller · CPG / F&amp;B network</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat agent">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Category scoring agents</span>
+                <span class="rprof">3 agents · sector sweep</span>
+              </span>
+              <span class="agtag">AGENT</span>
+            </div>
+            <div class="seat agent">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Compliance-monitor agents</span>
+                <span class="rprof">CSRD / UFLPA / tier-N visibility</span>
+              </span>
+              <span class="agtag">AGENT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- POD 06 -->
+        <div class="pod" data-vent="V06" data-stage="scout">
+          <div class="pod-head">
+            <div class="pod-code">EL-V06 · GATES</div>
+            <div class="pod-name">Agentic EDA point tool</div>
+            <div class="pod-vs">vs. <b>Synopsys / Cadence</b> · one design stage</div>
+            <div class="pod-meta">
+              <span class="pod-stage scout">SCOUTING</span>
+              <span class="pod-score">VULN <b>69</b></span>
+            </div>
+          </div>
+          <div class="seats">
+            <div class="seat lead" data-roles="lead">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding Lead <span class="leadtag">CEO</span></span>
+                <span class="rprof live">ASIC / PCB / verification engineer who has lived inside EDA flows</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat open" data-roles="eng">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding Engineer</span>
+                <span class="rprof live">EDA tooling, RL on physics, large-scale optimization</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat open" data-roles="gtm">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Founding GTM</span>
+                <span class="rprof live">Semiconductor enterprise seller · multi-year contract experience</span>
+              </span>
+              <a href="#apply" class="actbtn">APPLY →</a>
+            </div>
+            <div class="seat agent">
+              <span class="dot"></span>
+              <span class="role">
+                <span class="rname">Stage-by-stage scanner</span>
+                <span class="rprof">2 agents · maps the design flow</span>
+              </span>
+              <span class="agtag">AGENT</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pb-foot">
+        <span>Updated continuously. No names shown publicly; applications are confidential.</span>
+        <span><a href="#apply">→ Apply to a pod</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TARGETS TABLE ===== -->
+<section id="targets">
+  <div class="wrap">
+    <div class="sec-tag">04 — Vulnerability Index</div>
+    <h2>Targets chosen on evidence, <em>scored on real incumbents.</em></h2>
+    <p class="sec-lede">Every pod traces to a scored target. Pricing, customer pain, and switching cost are sourced from published incumbent rates, analyst data, and reviews mined by the scanner agents. <b>Higher score = more attackable.</b></p>
+
+    <div class="tablewrap">
+      <div class="tw-head"><span class="t">VULNERABILITY_INDEX // SORT: SCORE_DESC</span></div>
+      <div class="scrollx">
+      <table>
+        <thead>
+          <tr>
+            <th>Target / Incumbent</th>
+            <th>Incumbent price point</th>
+            <th>Documented pain</th>
+            <th>Vuln. score</th>
+            <th>Pod</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="tgt">Helpdesk / Support</div><div class="sub">vs. Zendesk</div></td>
+            <td class="mono">$169/agent/mo<div class="sub">+ $50 AI + $1.50–2.00/resolution</div></td>
+            <td>25-agent stack ≈ $77.7K/yr; users cite bills "eating budget for basic tickets"</td>
+            <td><span class="vscore"><span class="vbar"><i style="width:94%;background:var(--acc)"></i></span>94</span></td>
+            <td class="mono" style="color:var(--acc)">EL-V01</td>
+          </tr>
+          <tr>
+            <td><div class="tgt">CRM (≤50 seats)</div><div class="sub">vs. Salesforce</div></td>
+            <td class="mono">$175/user/mo<div class="sub">Agentforce ≈ $550/user</div></td>
+            <td>20–35% of premium seats only use lower-tier features; Klarna publicly dropped it</td>
+            <td><span class="vscore"><span class="vbar"><i style="width:91%;background:var(--acc)"></i></span>91</span></td>
+            <td class="mono" style="color:var(--acc)">EL-V02</td>
+          </tr>
+          <tr>
+            <td><div class="tgt">IT Service Mgmt</div><div class="sub">vs. ServiceNow</div></td>
+            <td class="mono">$100–200/fulfiller/mo<div class="sub">impl. 3–5× license</div></td>
+            <td>No public pricing; opaque three-axis licensing; mid-market over-served</td>
+            <td><span class="vscore"><span class="vbar"><i style="width:88%;background:var(--acc)"></i></span>88</span></td>
+            <td class="mono" style="color:var(--acc)">EL-V03</td>
+          </tr>
+          <tr>
+            <td><div class="tgt">ERP (mid-market)</div><div class="sub">vs. SAP / Oracle</div></td>
+            <td class="mono">$180–300/user/mo<div class="sub">impl. 2–6× subscription</div></td>
+            <td>Lidl €500M write-off; Revlon, National Grid ($945M), MillerCoors litigation</td>
+            <td><span class="vscore"><span class="vbar"><i style="width:80%;background:var(--thread)"></i></span>80</span></td>
+            <td class="mono" style="color:var(--thread)">EL-V04</td>
+          </tr>
+          <tr>
+            <td><div class="tgt">Demand Planning</div><div class="sub">vs. Blue Yonder / Kinaxis</div></td>
+            <td class="mono">$100K+/yr bespoke<div class="sub">multi-year contracts</div></td>
+            <td>KPMG: 43% of orgs have limited / no tier-1 supplier visibility</td>
+            <td><span class="vscore"><span class="vbar"><i style="width:74%;background:var(--weave)"></i></span>74</span></td>
+            <td class="mono" style="color:var(--weave)">EL-V05</td>
+          </tr>
+          <tr>
+            <td><div class="tgt">Chip Design / EDA</div><div class="sub">vs. Synopsys / Cadence</div></td>
+            <td class="mono">$750K–$2M/seat/yr<div class="sub">3-yr contracts, PDK-locked</div></td>
+            <td>3-vendor oligopoly ~75% share; opaque pricing; brittle to policy shocks</td>
+            <td><span class="vscore"><span class="vbar"><i style="width:69%;background:var(--weave)"></i></span>69</span></td>
+            <td class="mono" style="color:var(--weave)">EL-V06</td>
+          </tr>
+          <tr>
+            <td><div class="tgt">Project Management</div><div class="sub">vs. Jira / Atlassian</div></td>
+            <td class="mono">$14.54/user/mo<div class="sub">+ per-user Marketplace apps</div></td>
+            <td>Data Center Server EOL 2029 forces migration; large-project performance issues</td>
+            <td><span class="vscore"><span class="vbar"><i style="width:83%;background:var(--ink3)"></i></span>83</span></td>
+            <td class="mono" style="color:var(--ink3)">QUEUED</td>
+          </tr>
+          <tr>
+            <td><div class="tgt">Manufacturing Execution</div><div class="sub">vs. SAP DMC / Siemens Opcenter</div></td>
+            <td class="mono">$500K+ entry<div class="sub">12–24 mo implementation</div></td>
+            <td>OPC-UA-only MES captures ~20% of brownfield machines; integration is the wall</td>
+            <td><span class="vscore"><span class="vbar"><i style="width:64%;background:var(--ink3)"></i></span>64</span></td>
+            <td class="mono" style="color:var(--ink3)">QUEUED</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="tw-foot">SOURCES: incumbent published pricing (2025–2026), Gartner, Mordor Intelligence, G2, Gartner Peer Insights, KPMG, Computer Weekly, TechTarget. Scores are Endoloom's composite index, re-run weekly.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ROLES ===== -->
+<section id="roles">
+  <div class="wrap">
+    <div class="sec-tag">05 — The founding seats</div>
+    <h2>Three or four people per pod. <em>This is who they are.</em></h2>
+    <p class="sec-lede">Each pod is one Founding Lead (sometimes two, for verticals that need both a domain co-CEO and an ops co-CEO), one Founding Engineer, and one Founding GTM. Plus a senior advisor bench at the cohort level. <b>That's the whole human team.</b> Everything else is agents and shared infra.</p>
+
+    <div class="lanes">
+      <div class="lane featured">
+        <span class="featuredtag">CEO SEAT</span>
+        <div class="ic">FL</div>
+        <h4>Founding Lead</h4>
+        <div class="roleline">DOMAIN-NATIVE FOUNDER</div>
+        <div class="pitch">You know exactly where the incumbent is weak — the failed implementations, the price points that don't survive, the workflow the 2010 UI can't fix. You take a validated target and run the company. <b>The pod is yours.</b></div>
+        <div class="openct"><i></i>7 seats open · one per pod (V04 has two)</div>
+        <a href="#apply" class="lcta">LEAD A POD</a>
+      </div>
+
+      <div class="lane">
+        <div class="ic">FE</div>
+        <h4>Founding Engineer</h4>
+        <div class="roleline">CTO OF THE POD</div>
+        <div class="pitch">You shepherd agent-built code to production-grade. You set the architecture, hold the security bar, and own the system end to end. <b>One of you, with the agent stack, replaces a twenty-person eng team.</b></div>
+        <div class="openct"><i></i>6 seats open · one per pod</div>
+        <a href="#apply" class="lcta">BUILD A POD</a>
+      </div>
+
+      <div class="lane">
+        <div class="ic">FG</div>
+        <h4>Founding GTM</h4>
+        <div class="roleline">FIRST REVENUE, FIRST LOGOS</div>
+        <div class="pitch">Agents book the meetings; <b>you turn them into displaced Zendesks and SAPs.</b> You carry the trust enterprise buyers need before they rip out an incumbent. Some pods add this seat post-seed; others want it on day one.</div>
+        <div class="openct"><i></i>5 seats open · across V01, V02, V03, V05, V06</div>
+        <a href="#apply" class="lcta">SELL A POD</a>
+      </div>
+
+      <div class="lane">
+        <div class="ic">AB</div>
+        <h4>Senior Advisor Bench</h4>
+        <div class="roleline">SHARED · COHORT-LEVEL</div>
+        <div class="pitch">For senior operators who want exposure to the cohort without leading a pod. Office hours, a few intros, eyes on a hard problem. <b>Modest equity in the cohort, not a single venture.</b> Light commitment, real upside.</div>
+        <div class="openct"><i></i>Open by invitation &amp; application</div>
+        <a href="#apply" class="lcta">JOIN THE BENCH</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ETHICS ===== -->
+<section class="ethics" id="ethics">
+  <div class="wrap">
+    <div class="sec-tag">06 — Operating ethics</div>
+    <h2>Hardcore on conviction. <em>Strict on integrity.</em></h2>
+    <p class="sec-lede">Many of the people we want to talk to have signed serious agreements — NDAs, IP assignments, non-competes. <b>We treat those agreements as load-bearing.</b> The whole thesis is that domain knowledge wins, but domain knowledge is not the same as proprietary information, and we hold the line.</p>
+
+    <div class="ethics-grid">
+      <div class="ethics-block">
+        <div class="ethbox">
+          <div class="et">✓ WHAT WE ASK FOR</div>
+          <p><b>Public-domain market judgment.</b> What you have observed about a category — pricing patterns, common failure modes, the shape of buyer pain — that you would tell any peer at a conference. The kind of insight a senior operator carries with them as professional knowledge.</p>
+        </div>
+        <div class="ethbox">
+          <div class="et">✓ HOW WE WORK</div>
+          <p>Applications are <b>confidential</b>. We never display individual names publicly. Any background or affiliation you share goes only to the cohort selection team. References are checked on your terms, not before.</p>
+        </div>
+      </div>
+      <div class="ethics-block">
+        <div class="ethbox warn">
+          <div class="et">✗ WHAT WE NEVER ASK FOR</div>
+          <p>Confidential documents. Specific customer data. Pricing or roadmap detail covered by an NDA. Code or designs that belong to a current or former employer. <b>If in doubt, don't share it.</b> The wedge has to be built clean or it can't be built at all.</p>
+        </div>
+        <div class="ethbox warn">
+          <div class="et">✗ NON-COMPETES &amp; GARDEN LEAVE</div>
+          <p>If a non-compete or garden-leave clause covers the category a pod is attacking, <b>we'll wait it out with you.</b> The cohort runs in waves; the window doesn't close in a month. Talk to us early, build legally, and start when you are clear.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-tag">07 — Straight answers</div>
+    <h2>What a sharp operator <em>asks first.</em></h2>
+
+    <div class="faq">
+      <details open>
+        <summary>What does it actually mean to "found a pod"? <span class="pm">+</span></summary>
+        <div class="ans">You are a founder. Each Endoloom pod is a real company, incorporated separately, with you holding founding equity and running it. Endoloom provides the validated target, the agent stack, the shared infrastructure (legal, finance, hiring, cloud and tooling credits), the senior advisor bench, and seed-stage capital. In exchange, the cohort holds a studio stake. <b>You are the CEO of your pod, not an employee of Endoloom.</b></div>
+      </details>
+      <details>
+        <summary>How does Endoloom make money? <span class="pm">+</span></summary>
+        <div class="ans">Cohort-level equity across every pod. We deliberately don't make money from fees, services, or pod-level expenses — we win when the pods win. The shared infrastructure exists to lower the marginal cost of each new pod and to make the founders' lives easier, not to extract margin.</div>
+      </details>
+      <details>
+        <summary>Why all open seats? Don't you have anyone yet? <span class="pm">+</span></summary>
+        <div class="ans">Cohort 01 is being assembled right now. <b>That's the point.</b> We'd rather show you an honest, open pod board than fill seats with names to look credible. You can join the cohort at the same time as the founder sitting across from you. That's a feature of the AI-native moment — small founding teams, formed now, are how the next great software companies get built.</div>
+      </details>
+      <details>
+        <summary>I'm under a non-compete or NDA. Should I still apply? <span class="pm">+</span></summary>
+        <div class="ans">Yes — and read the operating ethics section above. We treat your existing agreements as load-bearing. If a non-compete covers the pod's target category, we'll wait it out with you. If you have to be careful about what you share, we won't ask you to share it. <b>Domain judgment is the qualification; proprietary information is never the input.</b></div>
+      </details>
+      <details>
+        <summary>I have the engineering chops but not a specific domain. Can I still be a Founding Engineer? <span class="pm">+</span></summary>
+        <div class="ans">Yes. The Founding Engineer seat is paired with a Founding Lead who carries the domain. You bring the production-grade taste and the agent-stack fluency. You'll also have the option to move between pods in the early weeks if the chemistry isn't right — better to optimize for fit than to force the first match.</div>
+      </details>
+      <details>
+        <summary>Why "founding" and not just "early-stage"? <span class="pm">+</span></summary>
+        <div class="ans">Because founding equity, founding accountability, and founding upside are all materially different from joining a company at employee #15. The whole AI-native moment is that <b>a team this small, today, can build what used to take fifty people</b> — and the people in that small team should share in the outcome accordingly. The word matters because the deal matters.</div>
+      </details>
+      <details>
+        <summary>Where do your numbers come from? <span class="pm">+</span></summary>
+        <div class="ans">Incumbent published pricing (2025–2026), Gartner and Mordor Intelligence market data, G2 and Gartner Peer Insights review corpora, KPMG supply-chain research, and reputable press (Computer Weekly, TechCrunch, TechTarget) for funding and failed-implementation figures. Where a figure is a range or an estimate, <b>we label it as such.</b> Precision over polish.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== APPLY ===== -->
+<section class="apply" id="apply">
+  <div class="wrap">
+    <div class="sec-tag" style="justify-content:center">08 — Apply to cohort 01</div>
+    <h2>Cohort 01 is forming now. <em>Apply confidentially.</em></h2>
+    <p class="sub">Tell us which pod and seat you're drawn to, and one or two sentences on why you. We reply to every applicant within 72 hours. <b>Names are never shown publicly.</b></p>
+
+    <form class="applycard" id="applyForm" onsubmit="return submitApp(event)">
+      <div class="formgrid">
+        <div class="formrow">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required placeholder="First Last">
+        </div>
+        <div class="formrow">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="you@domain.com">
+        </div>
+      </div>
+      <div class="formgrid">
+        <div class="formrow">
+          <label for="pod">Pod</label>
+          <select id="pod" name="pod" required>
+            <option value="">Choose a pod</option>
+            <option>EL-V01 · Concierge (vs Zendesk)</option>
+            <option>EL-V02 · Ledger (vs Salesforce)</option>
+            <option>EL-V03 · Desk (vs Jira SM / ServiceNow)</option>
+            <option>EL-V04 · Books (vs NetSuite / SAP)</option>
+            <option>EL-V05 · Flow (vs Blue Yonder / Kinaxis)</option>
+            <option>EL-V06 · Gates (vs Synopsys / Cadence)</option>
+            <option>I'm open to multiple</option>
+          </select>
+        </div>
+        <div class="formrow">
+          <label for="seat">Seat</label>
+          <select id="seat" name="seat" required>
+            <option value="">Choose a seat</option>
+            <option>Founding Lead (CEO)</option>
+            <option>Founding Engineer</option>
+            <option>Founding GTM</option>
+            <option>Senior Advisor Bench</option>
+            <option>Not sure — recommend a seat</option>
+          </select>
+        </div>
+      </div>
+      <div class="formrow">
+        <label for="why">Why you, in 1–2 sentences</label>
+        <textarea id="why" name="why" required placeholder="What you've seen about this category that the next founder needs to know. No confidential information."></textarea>
+      </div>
+      <div class="formrow">
+        <label for="link">Optional link (LinkedIn, GitHub, portfolio)</label>
+        <input type="url" id="link" name="link" placeholder="https://...">
+      </div>
+      <button type="submit" class="submitbtn">SUBMIT CONFIDENTIAL APPLICATION →</button>
+      <div class="formnote">Reviewed within 72 hours. Never shared publicly. Or email <a href="mailto:hello@endoloom.co">hello@endoloom.co</a>.</div>
+      <div class="ok" id="okMsg">Application received. We'll be in touch within 72 hours.</div>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="bx">
+          <span style="width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,var(--acc),var(--acc-deep) 70%)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0b0d12" stroke-width="2.2" stroke-linecap="round"><path d="M3 6 L21 6 M3 12 L21 12 M3 18 L21 18"/><path d="M7 3 L7 21 M12 3 L12 21 M17 3 L17 21" opacity=".55"/></svg>
+          </span>
+          endoloom
+        </div>
+        <p>Small founding pods, AI-native, attacking legacy SaaS from within. The codebase moat is gone. This is the window.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="fcol">
+          <h5>The Cohort</h5>
+          <a href="#thesis">The Moment</a>
+          <a href="#weave">How it works</a>
+          <a href="#pods">Pod Board</a>
+          <a href="#targets">Vulnerability Index</a>
+        </div>
+        <div class="fcol">
+          <h5>Seats</h5>
+          <a href="#roles">Founding Lead</a>
+          <a href="#roles">Founding Engineer</a>
+          <a href="#roles">Founding GTM</a>
+          <a href="#roles">Advisor Bench</a>
+        </div>
+        <div class="fcol">
+          <h5>Talk</h5>
+          <a href="#ethics">Operating ethics</a>
+          <a href="#faq">Straight answers</a>
+          <a href="#apply">Apply confidentially</a>
+          <a href="mailto:hello@endoloom.co">hello@endoloom.co</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 ENDOLOOM — COHORT 01 OPEN</span>
+      <span>HELLO@ENDOLOOM.CO</span>
+    </div>
+    <div class="disclaimer">
+      All market figures, incumbent pricing, and AI-native challenger reference data are drawn from public sources (2025–2026) including Gartner, Mordor Intelligence, G2, Gartner Peer Insights, KPMG, Computer Weekly, TechCrunch, TechTarget, and company-published funding announcements. Where figures are ranges or estimates, they are labeled as such. Vulnerability Index scores are Endoloom's composite estimates, re-run weekly. Named third-party companies (incumbents and AI-native challengers such as Sierra, Rillet, ChipAgents and others) are referenced for market-comparison purposes only and are not affiliated with Endoloom. Endoloom does not solicit, accept, or use any information covered by a current or former employer's NDA, IP assignment, or non-compete agreement. This page is informational and is not an offer of securities.
+    </div>
+  </div>
+</footer>
+
+<script>
+// Pod board filter
+const filterBtns=document.querySelectorAll('.pb-filter button');
+const pods=document.querySelectorAll('.pod');
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.f;
+    pods.forEach(pod=>{
+      const seats=pod.querySelectorAll('.seat');
+      const stage=pod.dataset.stage;
+      // Pod-level filters
+      if(f==='build'||f==='val'||f==='scout'){
+        pod.style.display = (stage===f) ? '' : 'none';
+        seats.forEach(s=>s.style.display='');
+        return;
+      }
+      pod.style.display='';
+      // Seat-level filters
+      seats.forEach(s=>{
+        let show=true;
+        if(f==='lead') show = s.dataset.roles==='lead';
+        else if(f==='eng') show = s.dataset.roles==='eng';
+        else if(f==='gtm') show = s.dataset.roles==='gtm';
+        s.style.display = show ? '' : 'none';
+      });
+    });
+  });
+});
+
+// Apply form (front-end demo; replace with real endpoint)
+function submitApp(e){
+  e.preventDefault();
+  const ok=document.getElementById('okMsg');
+  const form=document.getElementById('applyForm');
+  ok.classList.add('show');
+  form.querySelectorAll('input,select,textarea,button').forEach(el=>el.setAttribute('disabled','disabled'));
+  return false;
+}
+
+// Reveal on scroll
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('section .wrap > *, .thread, .lane, .pod, .bstat, .momcard, .ethbox').forEach((el,i)=>{el.classList.add('rv');el.style.transitionDelay=(Math.min(i%6,5)*40)+'ms';io.observe(el)});
+</script>
+</body>
+</html>
